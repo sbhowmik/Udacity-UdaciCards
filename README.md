@@ -2,8 +2,8 @@
 * Name of the Project is: UdaciCards 
 * This is the third technology project of Udacity React Nanodegree program.
 * Basic features of the Project are: 
-** Decks having Cards(ie Question + Answer). 
-** Quiz can be taken on a Deck to check knowledge.
+  * Decks having Cards(ie Question + Answer). 
+  * Quiz can be taken on a Deck to check knowledge.
 * Dummy Data is provided on 1st time use
 
 # Components
@@ -25,8 +25,8 @@
 # Testing
 The application was tested using an actual android phone. Expo app was installed on phone and the app started by scanning the QR code from Metro bundler.
 
-## instructions to Get Started
+# instructions to Get Started
 * install all project dependencies with `npm install`
 * start the development server with `yarn web`
-* Metro bundler would start at: http://localhost:19002/ . 
+* Metro bundler would start at: http://localhost:19002/ 
 * web project would start at: http://localhost:19006/

@@ -21,7 +21,7 @@ class CardAdd extends Component {
     
     //collect infos
     const { cardQuestion, cardAnswer } = this.state
-    const { route, dispatch, decks, subjects } = this.props
+    const { navigation, route, dispatch, decks, subjects } = this.props
     
     const { deckName } = route.params
     //console.log('dN', deckName)
@@ -43,6 +43,19 @@ class CardAdd extends Component {
 
     //call add deck handler
     handleAsyncAddCard(newCard, deckName, decks, subjects)
+
+    const thisDeck = decks[deckName]
+    //with the latest card added
+    const noOfDeckCards = thisDeck.questions.length + 1 
+
+    //navigate to go back
+    //navigation.goBack()
+
+    navigation.navigate('DeckDetail', {
+      deckName: deckName, 
+      deckCards: noOfDeckCards, 
+      navigation: navigation
+    })
 
   }
 

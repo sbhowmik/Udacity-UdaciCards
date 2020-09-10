@@ -45,9 +45,6 @@ class DeckAdd extends Component {
     //call add deck handler
     handleAsyncAdd(deck, decks, subjects)
 
-    //navigate to go back
-    //navigation.goBack()
-
     //navigate to the deck's details page
     navigation.navigate('DeckDetail', {
       deckName: newDeckName, 

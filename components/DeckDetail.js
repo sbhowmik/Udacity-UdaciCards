@@ -1,8 +1,9 @@
 import React from 'react'
-import { Button, StyleSheet, Text, View, YellowBox } from 'react-native'
+import { StyleSheet, Text, SafeAreaView, YellowBox, TouchableOpacity } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import { blue, red } from '../utils/colors'
 
+//ignore warning
 YellowBox.ignoreWarnings([
   'Non-serializable values were found in the navigation state',
 ])
@@ -18,11 +19,11 @@ export default function DeckDetail({ route, navigation }) {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>Detail View of Deck: {deckName}!!!</Text>
       <Text>Contains {deckCards} Card(s)</Text>
-      <Button
-        title="Add A Question"
+      <TouchableOpacity
+        style={styles.submitBtn}
         onPress={() => {
           /* 1. Navigate to the Add Question route with params */
           navigation.navigate('CardAdd', {
@@ -31,9 +32,11 @@ export default function DeckDetail({ route, navigation }) {
             navigation: navigation
           })
         }}
-      />
-      <Button
-        title="Start Quiz"
+      >
+        <Text style={styles.submitBtnText}>Add A Card</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.submitBtn}
         onPress={() => {
           /* 1. Navigate to the Add Question route with params */
           navigation.navigate('CardQuiz', {
@@ -42,9 +45,11 @@ export default function DeckDetail({ route, navigation }) {
             navigation: navigation
           })
         }}
-      />
+      >
+        <Text style={styles.submitBtnText}>Start Quiz</Text>
+      </TouchableOpacity>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -67,10 +72,12 @@ const styles = StyleSheet.create({
     fontSize:20
   },
   submitBtnText: {
+    padding: 5,
     fontSize: 22,
     textAlign: 'center',
   },
   submitBtn: {
+    width: 250,
     backgroundColor: '#f9c2ff',
     padding: 20,
     marginVertical: 8,

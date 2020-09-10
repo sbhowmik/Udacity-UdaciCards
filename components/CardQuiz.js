@@ -7,9 +7,9 @@ import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 //
 const ShowQuestion = ({thisQuestion, onShowAnswer}) => (
-  <View>
+  <View style={styles.container}>
   <Text> Question: </Text>
-  <Text>{thisQuestion}</Text>
+  <Text>{thisQuestion}</Text> 
   <TouchableOpacity 
     style={styles.submitBtn}
     onPress={onShowAnswer}
@@ -21,7 +21,7 @@ const ShowQuestion = ({thisQuestion, onShowAnswer}) => (
 
 //
 const ShowAnswer = ({thisAnswer, onShowQuestion}) => (
-  <View>
+  <View style={styles.container}>
     <Text>Answer: </Text>
     <Text>{thisAnswer}</Text>
     <TouchableOpacity 
@@ -68,7 +68,8 @@ class CardQuiz extends Component {
 
     this.setState({
       questionIndex: questionIndex,
-      correctAnswers: correctAnswers
+      correctAnswers: correctAnswers,
+      showAnswer: false //Reset to show question state once the user marks an answer
     })
 
     //clear and set local notifications
@@ -84,7 +85,8 @@ class CardQuiz extends Component {
     questionIndex = questionIndex + 1
 
     this.setState({
-      questionIndex: questionIndex
+      questionIndex: questionIndex,
+      showAnswer: false //Reset to show question state once the user marks an answer
     })
 
     //clear and set local notifications
@@ -102,6 +104,14 @@ class CardQuiz extends Component {
       correctAnswers: 0,
       showAnswer: false
     })
+  }
+
+  //
+  onBackToDeck = (e) => {
+
+    //navigate back
+    this.props.navigation.goBack()
+
   }
 
   //render
@@ -128,6 +138,7 @@ class CardQuiz extends Component {
     //console.log('noOfDeckCards', noOfDeckCards)
 
     //when quiz has been completed
+    //allow to retake quiz or go back to the Individual Deck view.
     if (questionIndex >= noOfDeckCards){
       return (
         <View style={styles.container}>
@@ -138,6 +149,11 @@ class CardQuiz extends Component {
             style={styles.submitBtn}
             onPress={this.onRetakeQuiz} >
             <Text style={styles.submitBtnText}>Retake Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.submitBtn}
+            onPress={this.onBackToDeck} >
+            <Text style={styles.submitBtnText}>Back to Deck</Text>
           </TouchableOpacity>
         </View>  
       )
@@ -207,6 +223,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   submitBtn: {
+    width: 250,
     backgroundColor: '#f9c2ff',
     padding: 20,
     marginVertical: 8,
